@@ -1,0 +1,36 @@
+{#
+
+Dashboard
+
+#}
+
+{% extends "base.htm.twig" %}
+
+{% block content %}
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <td>&nbsp;</td>
+            <td colspan="3"><div align="center"><strong>Bus Factor</strong></div></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><div align="center"><strong>Commiters count</strong></div></td>
+            <td><div align="center"><strong>Commits count</strong></div></td>
+            <td><div align="center"><strong>Last month commiters</strong></div></td>
+        </tr>
+        </thead>
+        <tbody>
+            {{ items | raw }}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block legend %}
+    <h4>Legend</h4>
+    <p>
+        <span class="danger"><strong>Low</strong>: 0% to {{low_upper_bound}}%</span>
+        <span class="warning"><strong>Medium</strong>: {{low_upper_bound}}% to {{high_lower_bound}}%</span>
+        <span class="success"><strong>High</strong>: {{high_lower_bound}}% to 100%</span>
+    </p>
+{% endblock %}

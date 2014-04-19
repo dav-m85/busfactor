@@ -1,0 +1,7 @@
+.idea
+.etags
+.tmp
+vendor
+composer.phar
+config.yml
+out

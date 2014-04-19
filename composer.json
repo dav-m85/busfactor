@@ -1,0 +1,27 @@
+{
+    "name": "dav-m85/busfactor",
+    "description": "Find out which file in your git is poorly maintained",
+    "keywords": ["git", "statistics", "symfony"],
+    "homepage": "https://github.com/dav-m85/busfactor",
+    "type": "application",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "David Moreau",
+            "email": "dav.m85@gmail.com"
+        }
+    ],
+    "bin": ["gitbf"],
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/console": "~2.1@dev",
+        "symfony/process": "*",
+        "symfony/yaml": "*",
+        "symfony/config": "*",
+        "knplabs/github-api": "*",
+        "twig/twig": "*"
+    },
+    "autoload": {
+        "psr-0": { "DavM85\\BusFactor": "src/" }
+    }
+}
