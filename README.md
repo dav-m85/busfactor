@@ -1,8 +1,6 @@
-README
-======
+#busfactor
 
-What is busfactor
------------------
+[![Build Status](https://travis-ci.org/dav-m85/busfactor.png?branch=master)](https://travis-ci.org/dav-m85/busfactor)
 
 *busfactor* generates a coverage report indicating how much developers worked on each file of a git repo. It helps pinpoint part of the code that are poorly maintained / known by the teams working on it.
 
