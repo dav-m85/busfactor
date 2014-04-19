@@ -10,21 +10,12 @@ namespace DavM85\BusFactor\Entity;
 class PathStatistic
 {
     private $data = array(
-        'authors' => array(),
-        'hashes' => array(),
-        'monthAuthors' => array()
+        'risky_count' => 1,
+        'heroes' => array(),
+        'busfactor' => 32,
+
+        'authors' => array()
     );
-
-    private static $lastMonth;
-
-    public static function getLastMonthTimestamp()
-    {
-        if(! self::$lastMonth){
-            self::$lastMonth = strtotime('-1 month');
-        }
-        return self::$lastMonth;
-    }
-
 
     /**
      * @param string[] $commits
@@ -32,15 +23,8 @@ class PathStatistic
     public function addCommit(Commit $commit)
     {
         $this->data['authors'][$commit->author] = 1;
-        $this->data['hashes'][$commit->hash] = 1;
-
-        if($commit->timestamp >= self::getLastMonthTimestamp()){
-            $this->data['monthAuthors'][$commit->author] = 1;
-        }
-
         $this->data['authors_count'] = count(array_keys($this->data['authors']));
-        $this->data['hashes_count'] = count(array_keys($this->data['hashes']));
-        $this->data['monthAuthors_count'] = count(array_keys($this->data['monthAuthors']));
+
     }
 
     /**
@@ -82,7 +66,6 @@ class PathStatistic
 
     public function getData()
     {
-
         return $this->data;
     }
 }
