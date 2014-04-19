@@ -15,9 +15,8 @@ Dashboard
         </tr>
         <tr>
             <td>&nbsp;</td>
-            <td><div align="center"><strong>Commiters count</strong></div></td>
-            <td><div align="center"><strong>Commits count</strong></div></td>
-            <td><div align="center"><strong>Last month commiters</strong></div></td>
+            <td><div align="center"><strong>Bus Factor</strong></div></td>
+            <td><div align="center"><strong>Heroes</strong></div></td>
         </tr>
         </thead>
         <tbody>
@@ -28,6 +27,10 @@ Dashboard
 
 {% block legend %}
     <h4>Legend</h4>
+    <p>
+        Bus factor is the percentage of files that got only one "hero" commiter. Make sure heroes
+        do not die.
+    </p>
     <p>
         <span class="danger"><strong>Low</strong>: 0% to {{low_upper_bound}}%</span>
         <span class="warning"><strong>Medium</strong>: {{low_upper_bound}}% to {{high_lower_bound}}%</span>

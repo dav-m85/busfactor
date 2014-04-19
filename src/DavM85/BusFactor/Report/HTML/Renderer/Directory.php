@@ -44,13 +44,6 @@ class Directory extends Renderer
      */
     protected function renderItem(Node $item, $total = false)
     {
-        /*
-        $data = array(
-            'numClasses'                   => $item->getNumClassesAndTraits(),
-
-        );
-        */
-
         if ($total) {
             $data['name'] = 'Total';
         } else {

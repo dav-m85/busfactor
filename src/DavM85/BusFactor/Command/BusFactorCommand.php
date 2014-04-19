@@ -76,7 +76,24 @@ class BusFactorCommand extends AbstractCommand
 
         $loader = new \Twig_Loader_Filesystem($templateDir);
         $twig = new \Twig_Environment($loader, array());
+        
         $twig->addGlobal('rootPath', 'file:///Users/david/Projects/BusFactor/out/');
+        $twig->addGlobal('lower', $configuration['thresholds']['lower']);
+        $twig->addGlobal('higher', $configuration['thresholds']['higher']);
+
+        $filter = new Twig_SimpleFilter('level', function ($percent) use ($configuration){
+            $lower = $configuration['thresholds']['lower'];
+            $higher = $configuration['thresholds']['higher'];
+            if ($percent < $lower) {
+                return 'danger';
+            } elseif ($percent >= $lower &&
+                $percent <  $higher) {
+                return 'warning';
+            } else {
+                return 'success';
+            }
+        });
+        $twig->addFilter($filter);
 
         $common = array(
             'id'               => '', //$node->getId(),

@@ -150,23 +150,4 @@ abstract class Renderer
 
         return str_repeat('../', $depth);
     }
-
-    protected $lowUpperBound = 50;
-    protected $highLowerBound = 75;
-
-    /**
-     * @param  integer $percent
-     * @return string
-     */
-    protected function getColorLevel($percent)
-    {
-        if ($percent < $this->lowUpperBound) {
-            return 'danger';
-        } elseif ($percent >= $this->lowUpperBound &&
-            $percent <  $this->highLowerBound) {
-            return 'warning';
-        } else {
-            return 'success';
-        }
-    }
 }

@@ -41,6 +41,12 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('rootPath')
                     ->defaultValue($this->getRootPath())
                 ->end()
+                ->arrayNode('thresholds')
+                    ->children()
+            ->scalarNode('lower')->defaultValue(10)->end()
+            ->scalarNode('higher')->defaultValue(40)->end()
+                    ->end()
+                ->end()
             ->end()
         ;
 
