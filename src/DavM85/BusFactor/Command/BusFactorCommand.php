@@ -48,7 +48,7 @@ class BusFactorCommand extends AbstractCommand
             $data[$full] = new PathStatistic();
         }
 
-        // Get full history and pour it inside stats
+        // MEMLEAK HERE !
         $commits = $repository->getStatisticForPath('.');
 
         foreach($commits as $commit){
