@@ -56,7 +56,7 @@ class Repository
     // shall find something more clever to do.
     public function getStatisticForPath($path)
     {
-        $data = $this->exec(sprintf('log --no-color --max-count=1000 --pretty="tformat:%s" --name-only', Commit::$format));
+        $data = $this->exec(sprintf('log --no-color --pretty="tformat:%s" --name-only', Commit::$format));
 
         if(is_string($data)){$data = array($data);}
         if(is_null($data)){$data=array();}
