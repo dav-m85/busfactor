@@ -85,12 +85,12 @@ class BusFactorCommand extends AbstractCommand
             $lower = $configuration['thresholds']['lower'];
             $higher = $configuration['thresholds']['higher'];
             if ($percent < $lower) {
-                return 'danger';
+                return 'success';
             } elseif ($percent >= $lower &&
                 $percent <  $higher) {
                 return 'warning';
             } else {
-                return 'success';
+                return 'danger';
             }
         });
         $twig->addFilter($filter);

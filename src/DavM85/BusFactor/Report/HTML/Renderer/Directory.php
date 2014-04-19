@@ -18,7 +18,7 @@ class Directory extends Renderer
     {
         // $this->setCommonTemplateVariables($template, $node);
         $items = array();
-        $items[] = $this->renderItem($node, true);
+        // $items[] = $this->renderItem($node, true);
 
         foreach ($node->getDirectories() as $item) {
             $items[] = $this->renderItem($item);

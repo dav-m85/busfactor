@@ -1,13 +1,10 @@
 <tr>
-    <td class="{{lines_level}}">{{icon | raw}} {{name | raw}}</td>
-    <td class="{{lines_level}} big">{% include 'coverage_bar.html.twig' with {'percent': 45, 'level': 'danger'} %}</td>
-    <td class="{{lines_level}} small">45%</td>
-    <td class="{{lines_level}}">{{ risky_count }}</td>
-    <td class="{{lines_level}}">{{ heroes }}</td>
-
-    {#
-    <td class="{{classes_level}} big">{{classes_bar | raw}}</td>
-    <td class="{{classes_level}} small"><div align="right">{{classes_tested_percent}}</div></td>
-    <td class="{{classes_level}} small"><div align="right">{{classes_number}}</div></td>
-    #}
+    {% set level = busfactor | level %}
+    <td class="{{level}}">{{icon | raw}} {{name | raw}}</td>
+    <td class="{{level}} big">{% include 'coverage_bar.html.twig' with {'percent': busfactor, 'level': busfactor | level} %}</td>
+    <td class="{{level}} small">{{ busfactor }}%</td>
+    <td class="{{level}} small">{{ risky_count }}</td>
+    <td class="{{level}} big">
+        {% for key, hero in heroes %}{{ key }}, {% endfor %}
+    </td>
 </tr>

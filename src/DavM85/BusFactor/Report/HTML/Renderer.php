@@ -113,10 +113,6 @@ abstract class Renderer
             $node->getName()
         );
 
-        if ($node instanceof Node\Directory) {
-            $buffer .= '        <li>(<a href="dashboard.html">Dashboard</a>)</li>' . "\n";
-        }
-
         return $buffer;
     }
 
