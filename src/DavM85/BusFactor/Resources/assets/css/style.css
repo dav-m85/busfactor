@@ -53,6 +53,7 @@ td.big {
 }
 
 td.small {
+    width: 35px;
 }
 
 td.codeLine {

@@ -2,9 +2,9 @@
     {% set level = busfactor | level %}
     <td class="{{level}}">{{icon | raw}} {{name | raw}}</td>
     <td class="{{level}} big">{% include 'coverage_bar.html.twig' with {'percent': busfactor, 'level': busfactor | level} %}</td>
-    <td class="{{level}} small">{{ busfactor }}%</td>
+    <td class="{{level}} small">{{ busfactor |number_format(2) }}%</td>
     <td class="{{level}} small">{{ risky_count }}</td>
-    <td class="{{level}} big">
+    <td class="{{level}}">
         {% for key, hero in heroes %}{{ key }}, {% endfor %}
     </td>
 </tr>
