@@ -35,7 +35,6 @@ class PathStatistic
         $this->data['hashes'][$commit->hash] = 1;
 
         if($commit->timestamp >= self::getLastMonthTimestamp()){
-
             $this->data['monthAuthors'][$commit->author] = 1;
         }
 

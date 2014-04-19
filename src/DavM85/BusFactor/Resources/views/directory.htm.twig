@@ -20,7 +20,9 @@ Dashboard
         </tr>
         </thead>
         <tbody>
-            {{ items | raw }}
+            {% for item in items %}
+                {% include 'directory_item.htm.twig' with item %}
+            {% endfor %}
         </tbody>
     </table>
 {% endblock %}
@@ -32,8 +34,8 @@ Dashboard
         do not die.
     </p>
     <p>
-        <span class="danger"><strong>Low</strong>: 0% to {{low_upper_bound}}%</span>
-        <span class="warning"><strong>Medium</strong>: {{low_upper_bound}}% to {{high_lower_bound}}%</span>
-        <span class="success"><strong>High</strong>: {{high_lower_bound}}% to 100%</span>
+        <span class="danger"><strong>Low</strong>: 0% to {{lower}}%</span>
+        <span class="warning"><strong>Medium</strong>: {{lower}}% to {{higher}}%</span>
+        <span class="success"><strong>High</strong>: {{higher}}% to 100%</span>
     </p>
 {% endblock %}

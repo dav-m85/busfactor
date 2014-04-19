@@ -17,15 +17,15 @@ class Directory extends Renderer
     public function render(\DavM85\BusFactor\Node\Directory $node, $file)
     {
         // $this->setCommonTemplateVariables($template, $node);
-
-        $items = $this->renderItem($node, true);
+        $items = array();
+        $items[] = $this->renderItem($node, true);
 
         foreach ($node->getDirectories() as $item) {
-            $items .= $this->renderItem($item);
+            $items[] = $this->renderItem($item);
         }
 
         foreach ($node->getFiles() as $item) {
-            $items .= $this->renderItem($item);
+            $items[] = $this->renderItem($item);
         }
 
         $data = array(
@@ -66,10 +66,7 @@ class Directory extends Renderer
             $data = array_merge($data, $item->getValue()->getData());
         }
 
-        // $data['methods_bar'] = $this->getCoverageBar(51);
-        // $data['lines_level'] = $this->getColorLevel(23);
-
-        return $this->twig->render('directory_item.htm.twig', $data);
+        return $data;
     }
 
 
