@@ -22,7 +22,7 @@ class Commit
         $commits = array();
         $commit = null;
 
-        while( ($line = array_shift($data)) !== false){
+        while( ($line = array_shift($data)) !== null){
             // new commit
             if(0 === stripos($line, '#')){
                 $commit = new self();

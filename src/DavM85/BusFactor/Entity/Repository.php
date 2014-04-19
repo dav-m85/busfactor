@@ -60,9 +60,7 @@ class Repository
 
         if(is_string($data)){$data = array($data);}
         if(is_null($data)){$data=array();}
-
         $commits = Commit::parse($data);
-
-        var_dump($commits); die;
+        return $commits;
     }
 }
