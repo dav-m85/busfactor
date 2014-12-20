@@ -5,3 +5,4 @@ vendor
 composer.phar
 config.yml
 out
+composer.lock

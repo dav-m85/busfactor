@@ -10,7 +10,7 @@ class Application extends BaseApplication
     public function __construct()
     {
         // Create the app
-        parent::__construct('git busfactor', 'v0.1.0');
+        parent::__construct('git busfactor', APP_VERSION);
 
         // Create some services
         $configurationFactory = new ConfigurationFactory();

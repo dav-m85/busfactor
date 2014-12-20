@@ -3,6 +3,8 @@
 
 require __DIR__.'/src/bootstrap.php';
 
+define('APP_VERSION', '0.1.0');
+
 use DavM85\BusFactor\Console\Application;
 
 $application = new Application();

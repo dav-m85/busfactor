@@ -11,15 +11,14 @@
             "email": "dav.m85@gmail.com"
         }
     ],
-    "bin": ["gitbf"],
+    "bin": ["busfactor"],
     "require": {
-        "php": ">=5.3.2",
-        "symfony/console": "~2.1@dev",
-        "symfony/process": "*",
-        "symfony/yaml": "*",
-        "symfony/config": "*",
-        "knplabs/github-api": "*",
-        "twig/twig": "*"
+        "symfony/console": "v2.4.2",
+        "symfony/process": "v2.4.2",
+        "symfony/yaml": "v2.4.2",
+        "symfony/config": "v2.4.2",
+        "knplabs/github-api": "1.2.1",
+        "twig/twig": "v1.15.1"
     },
     "autoload": {
         "psr-0": { "DavM85\\BusFactor": "src/" }
