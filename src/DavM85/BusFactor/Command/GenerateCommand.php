@@ -90,7 +90,9 @@ class GenerateCommand extends Command
         $filter = new \Twig_SimpleFilter('level', function ($percent) use ($configuration){
             $lower = $configuration['lower_threshold'];
             $higher = $configuration['higher_threshold'];
-            if ($percent < $lower) {
+            if($percent == 0){
+                return '';
+            } elseif ($percent < $lower) {
                 return 'success';
             } elseif ($percent >= $lower &&
                 $percent <  $higher) {

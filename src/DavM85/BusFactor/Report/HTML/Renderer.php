@@ -35,16 +35,6 @@ abstract class Renderer
     }
 
     /**
-     * @param  float $percent
-     * @return string
-     */
-    protected function getCoverageBar($percent)
-    {
-        $level = $this->getColorLevel($percent);
-        return $this->twig->render('coverage_bar.html.twig', array('level' => $level, 'percent' => sprintf("%.2F", $percent)));
-    }
-
-    /**
      * @param Text_Template                $template
      * @param PHP_CodeCoverage_Report_Node $node
      */
