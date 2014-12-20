@@ -38,7 +38,7 @@ class Commit
                 continue;
             }
             if($commit){
-                array_push($commit->paths, $line);
+                array_push($commit->paths, trim($line));
             }
         }
 
@@ -47,6 +47,6 @@ class Commit
 
     public static function clean($string)
     {
-        return substr($string, 2);
+        return trim(substr($string, 2));
     }
 }
