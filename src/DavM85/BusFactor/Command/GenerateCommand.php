@@ -14,14 +14,19 @@ use Symfony\Component\Console\Output\OutputInterface;
 use DavM85\BusFactor\Entity\Repository;
 use DavM85\BusFactor\Entity\Commit;
 
-class BusFactorCommand extends AbstractCommand
+class GenerateCommand extends Command
 {
     protected function configure()
     {
         $this
-            ->setName('build')
+            ->setName('generate')
             ->addArgument('path', InputArgument::REQUIRED, 'Path to a git repository folder')
-            ->addOption('output', 'o', InputOption::VALUE_REQUIRED, 'Path to the output dir. Default ./out')
+            ->addOption('output', 'o', InputOption::VALUE_REQUIRED, 'Path to the output dir.', './out')
+            ->addOption('access_token', 'a', InputOption::VALUE_REQUIRED, 'Github access token')
+            ->addOption('organisation', null, InputOption::VALUE_REQUIRED, 'Github access token')
+            ->addOption('lower_threshold', 'lt', InputOption::VALUE_REQUIRED, 'Github access token', 10)
+            ->addOption('higher_threshold', 'ht', InputOption::VALUE_REQUIRED, 'Github access token', 40)
+            ->addOption('rootPath', 'r', InputOption::VALUE_REQUIRED, 'Github access token', $this->getRootPath())
         ;
     }
 
@@ -29,9 +34,8 @@ class BusFactorCommand extends AbstractCommand
     {
         date_default_timezone_set('UTC');
 
-        $configuration = $this->getConfiguration();
-        $hasOutput = $input->hasOption('output');
-        $targetDir = $hasOutput ? $input->getOption('output') : $configuration['rootPath'] . '/out';
+        $rootPath = $input->getOption('rootPath');
+        $targetDir = $rootPath . '/' . $input->getOption('output');
         $gitDir = $input->getArgument('path');
 
         // Get a repository
@@ -66,7 +70,11 @@ class BusFactorCommand extends AbstractCommand
         $rootNode = $factory->create($data);
 
         // Generate the output
-        $html = new HTML($this->getTwig($configuration));
+        $html = new HTML($this->getTwig(array(
+            'rootPath' => $input->getOption('rootPath'),
+            'lower_threshold' => $input->getOption('lower_threshold'),
+            'higher_threshold' => $input->getOption('higher_threshold')
+        )));
         $html->process($rootNode, $targetDir);
     }
 
@@ -77,13 +85,13 @@ class BusFactorCommand extends AbstractCommand
         $loader = new \Twig_Loader_Filesystem($templateDir);
         $twig = new \Twig_Environment($loader, array());
 
-        $twig->addGlobal('rootPath', 'file:///Users/david/Projects/BusFactor/out/');
-        $twig->addGlobal('lower', $configuration['thresholds']['lower']);
-        $twig->addGlobal('higher', $configuration['thresholds']['higher']);
+        $twig->addGlobal('rootPath', $configuration['rootPath'] . '/out'); //@todo change that
+        $twig->addGlobal('lower', $configuration['lower_threshold']);
+        $twig->addGlobal('higher', $configuration['higher_threshold']);
 
         $filter = new \Twig_SimpleFilter('level', function ($percent) use ($configuration){
-            $lower = $configuration['thresholds']['lower'];
-            $higher = $configuration['thresholds']['higher'];
+            $lower = $configuration['lower_threshold'];
+            $higher = $configuration['higher_threshold'];
             if ($percent < $lower) {
                 return 'success';
             } elseif ($percent >= $lower &&
@@ -111,5 +119,10 @@ class BusFactorCommand extends AbstractCommand
         );
 
         return $twig;
+    }
+
+    private function getRootPath()
+    {
+        return dirname(realpath($_SERVER['argv'][0]));
     }
 }

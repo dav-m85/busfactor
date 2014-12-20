@@ -10,22 +10,10 @@ If someone get hit by a bus, maybe some files becomes difficult to maintain furt
 
 It was inspired by a GoogleIO talk given by Brian Fitzpatrick, Ben Collins-Sussman, "The Myth of the Genius Programer".
 
-Requirements
-------------
-
-gnu make, php5.3
-
 Usage
 ------------
 
-Copy config.yml.dist to config.yml, and setup the correct key values (you need a github API access token).
-```bash
-# Installs deps
-make build
-
-# Mirror the files
-./gitbf build
-```
+... todo
 
 Contributing
 ------------

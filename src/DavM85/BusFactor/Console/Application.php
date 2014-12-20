@@ -13,18 +13,15 @@ class Application extends BaseApplication
         parent::__construct('git busfactor', APP_VERSION);
 
         // Create some services
-        $configurationFactory = new ConfigurationFactory();
-        $configuration = $configurationFactory->make('config.yml');
         $client = null;
 
         // Add the commands
         $commands = array(
-            'DavM85\BusFactor\Command\BusFactorCommand'
+            'DavM85\BusFactor\Command\GenerateCommand'
         );
         $app = $this;
-        array_walk($commands, function ($commandName) use ($app, $configuration, $client) {
+        array_walk($commands, function ($commandName) use ($app, $client) {
                 $command = new $commandName();
-                $command->setConfiguration($configuration);
                 $app->add($command);
             });
     }

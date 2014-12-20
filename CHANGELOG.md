@@ -1,5 +1,9 @@
 CHANGELOG
+=========
 
-* 0.1.0
+### 0.2.0
+  * Removed file generation
+  * Renamed bin
 
-  * Lets start !
+### 0.1.0
+  * Initial version, basic generation with a config file
