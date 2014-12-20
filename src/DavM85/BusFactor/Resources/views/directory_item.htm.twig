@@ -5,6 +5,6 @@
     <td class="{{level}} small">{{ busfactor |number_format(2) }}%</td>
     <td class="{{level}} small">{{ risky_count }}</td>
     <td class="{{level}}">
-        {% for key, hero in heroes %}{{ key }}, {% endfor %}
+        {{ heroes | keys | join(',')  }}
     </td>
 </tr>

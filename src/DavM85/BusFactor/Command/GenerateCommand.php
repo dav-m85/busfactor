@@ -20,13 +20,10 @@ class GenerateCommand extends Command
     {
         $this
             ->setName('generate')
-            ->addArgument('path', InputArgument::REQUIRED, 'Path to a git repository folder')
-            ->addOption('output', 'o', InputOption::VALUE_REQUIRED, 'Path to the output dir.', './out')
-            ->addOption('access_token', 'a', InputOption::VALUE_REQUIRED, 'Github access token')
-            ->addOption('organisation', null, InputOption::VALUE_REQUIRED, 'Github access token')
-            ->addOption('lower_threshold', 'lt', InputOption::VALUE_REQUIRED, 'Github access token', 10)
-            ->addOption('higher_threshold', 'ht', InputOption::VALUE_REQUIRED, 'Github access token', 40)
-            ->addOption('rootPath', 'r', InputOption::VALUE_REQUIRED, 'Github access token', $this->getRootPath())
+            ->addArgument('path', InputArgument::REQUIRED, '.git folder to analyze path.')
+            ->addArgument('output', InputArgument::OPTIONAL, 'Output directory path.', $this->getRootPath() . '/out')
+            ->addOption('lower_threshold', 'lt', InputOption::VALUE_REQUIRED, 'Lower busfactor threshold. Green below.', 10)
+            ->addOption('higher_threshold', 'ht', InputOption::VALUE_REQUIRED, 'Higher busfactor threshold. Above is red.', 40)
         ;
     }
 
@@ -34,8 +31,7 @@ class GenerateCommand extends Command
     {
         date_default_timezone_set('UTC');
 
-        $rootPath = $input->getOption('rootPath');
-        $targetDir = $rootPath . '/' . $input->getOption('output');
+        $targetDir = $input->getArgument('output');
         $gitDir = $input->getArgument('path');
 
         // Get a repository
@@ -71,21 +67,23 @@ class GenerateCommand extends Command
 
         // Generate the output
         $html = new HTML($this->getTwig(array(
-            'rootPath' => $input->getOption('rootPath'),
+            'targetDir' => $targetDir,
             'lower_threshold' => $input->getOption('lower_threshold'),
             'higher_threshold' => $input->getOption('higher_threshold')
         )));
         $html->process($rootNode, $targetDir);
+
+        $output->writeln('<info>Done !</info>');
     }
 
     public function getTwig($configuration)
     {
-        $templateDir = $configuration['rootPath'] . '/src/DavM85/BusFactor/Resources/views';
+        $templateDir = $this->getRootPath() . '/src/DavM85/BusFactor/Resources/views';
 
         $loader = new \Twig_Loader_Filesystem($templateDir);
         $twig = new \Twig_Environment($loader, array());
 
-        $twig->addGlobal('rootPath', $configuration['rootPath'] . '/out'); //@todo change that
+        $twig->addGlobal('rootPath', $configuration['targetDir'] . '/');
         $twig->addGlobal('lower', $configuration['lower_threshold']);
         $twig->addGlobal('higher', $configuration['higher_threshold']);
 
@@ -103,6 +101,7 @@ class GenerateCommand extends Command
         });
         $twig->addFilter($filter);
 
+        // @todo dont know why I left that here
         $common = array(
             'id'               => '', //$node->getId(),
             'full_path'        => '', //$node->getPath(),
