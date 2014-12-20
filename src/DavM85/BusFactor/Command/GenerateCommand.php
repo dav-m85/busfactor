@@ -24,6 +24,7 @@ class GenerateCommand extends Command
             ->addArgument('output', InputArgument::OPTIONAL, 'Output directory path.', $this->getRootPath() . '/out')
             ->addOption('lower_threshold', 'lt', InputOption::VALUE_REQUIRED, 'Lower busfactor threshold. Green below.', 10)
             ->addOption('higher_threshold', 'ht', InputOption::VALUE_REQUIRED, 'Higher busfactor threshold. Above is red.', 40)
+            ->addOption('asset_url', 'a', InputOption::VALUE_REQUIRED, 'URL to the folder containing the assets', '.')
         ;
     }
 
@@ -67,7 +68,7 @@ class GenerateCommand extends Command
 
         // Generate the output
         $html = new HTML($this->getTwig(array(
-            'targetDir' => $targetDir,
+            'targetDir' => $input->getOption('asset_url'),
             'lower_threshold' => $input->getOption('lower_threshold'),
             'higher_threshold' => $input->getOption('higher_threshold')
         )));

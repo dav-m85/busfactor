@@ -10,10 +10,52 @@ If someone get hit by a bus, maybe some files becomes difficult to maintain furt
 
 It was inspired by a GoogleIO talk given by Brian Fitzpatrick, Ben Collins-Sussman, "The Myth of the Genius Programer".
 
-Usage
+Installation
 ------------
 
-... todo
+### With composer
+
+```bash
+composer global require "dav-m85/busfactor=0.2.*"
+busfactor ...
+```
+
+Make sure your global composer folder is in your PATH.
+
+### By cloning the repo
+
+```bash
+git clone http://github.com/dav-m85/busfactor.git
+cd busfactor
+composer install
+./busfactor ...
+```
+
+### As a dependency in another composer project
+
+Add the following in your composer.json
+```json
+{
+    "require-dev": {
+        "dav-m85/busfactor": "0.2.*"
+    }
+}
+```
+
+Usage
+-----------
+
+Given you have a /my/git/repository, do as follows (paths have to be absolute, output parent folder has to be writeable)
+```bash
+busfactor generate /my/git/repository/.git /home/me/out
+```
+
+Then open /home/me/out/index.html with your browser.
+
+If you intend to use serve generated files, specify an asset-url options like this
+```
+busfactor generate /my/git/repository/.git /home/me/out --asset-url http://example.com/root/path
+```
 
 Contributing
 ------------
