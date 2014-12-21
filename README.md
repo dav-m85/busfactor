@@ -2,13 +2,15 @@
 
 [![Build Status](https://travis-ci.org/dav-m85/busfactor.png?branch=master)](https://travis-ci.org/dav-m85/busfactor)
 
-*busfactor* generates a coverage report indicating how much developers worked on each file of a git repo. It helps pinpoint part of the code that are poorly maintained / known by the teams working on it.
+*busfactor* generates a coverage report indicating how much each contributor worked on each file of a git repo.
+It helps pinpoint part of the code that are poorly maintained/known by the teams working on it.
 
 ![screenshot](https://github.com/dav-m85/busfactor/raw/master/doc/screenshot.png)
 
-If someone get hit by a bus, maybe some files becomes difficult to maintain further.
+If someone gets hit by a bus, some files may become more difficult to maintain further.
 
-It was inspired by a GoogleIO talk given by Brian Fitzpatrick, Ben Collins-Sussman, "The Myth of the Genius Programer".
+It was inspired by a GoogleIO talk given by Brian Fitzpatrick, Ben Collins-Sussman,
+[The Myth of the Genius Programmer](https://www.youtube.com/watch?v=0SARbwvhupQ).
 
 Installation
 ------------
@@ -17,7 +19,6 @@ Installation
 
 ```bash
 composer global require "dav-m85/busfactor=0.2.*"
-busfactor ...
 ```
 
 Make sure your global composer folder is in your PATH.
@@ -28,12 +29,11 @@ Make sure your global composer folder is in your PATH.
 git clone http://github.com/dav-m85/busfactor.git
 cd busfactor
 composer install
-./busfactor ...
 ```
 
 ### As a dependency in another composer project
 
-Add the following in your composer.json
+Add the following to your composer.json
 ```json
 {
     "require-dev": {
@@ -41,53 +41,66 @@ Add the following in your composer.json
     }
 }
 ```
+Then in your project folder:
+```bash
+composer install
+```
 
 Usage
------------
+-----
 
-Given you have a /my/git/repository, do as follows (paths have to be absolute, output parent folder has to be writeable)
+Given you have a repository `my/git/repository`, you can generate a report with following command
+(`output/parent/folder` has to be writeable):
 ```bash
-busfactor generate /my/git/repository/.git /home/me/out
+busfactor generate my/git/repository output/parent/folder
 ```
 
-Then open /home/me/out/index.html with your browser.
+Then open `output/parent/folder/index.html` with your browser.
 
-If you intend to use serve generated files, specify an asset-url options like this
+If you don't specify an output folder, the report will automatically be generated to `out/` folder relative to
+[busfactor](busfactor) file.
+
+If you intend to serve generated files, specify an asset-url options like this:
 ```
-busfactor generate /my/git/repository/.git /home/me/out --asset-url http://example.com/root/path
+busfactor generate my/git/repository output/parent/folder --asset-url http://example.com/root/path
 ```
 
 Contributing
 ------------
 
-You can contribute in various ways :
+You can contribute in various ways:
 
-*Report bugs* in the projects "issues" section. Please make sure you know how to report one, general understanding of [this
-document](http://www.chiark.greenend.org.uk/~sgtatham/bugs.html) could help ;)
+*Report bugs* in the project [issues](../../issues) section.
+Please make sure you know how to report one, general understanding of
+[this document](http://www.chiark.greenend.org.uk/~sgtatham/bugs.html) may help ;)
 
-You want to *fix a bug* ? Take an issue or fill one, assign yourself on it and when done, submit a Pull Request. I'll do
+You want to *fix a bug*? Take an issue or fill one, assign yourself on it and when done, submit a Pull Request. I'll do
 my best to read it in a timely fashion and approve it.
 
 Note that this project is following [Semantic Versioning 2.0.0](http://semver.org/).
 
-You like this project ? Fork it, star it, talk about it !
+You like this project? Fork it, star it, talk about it!
 
 Testing
-----------------------
+-------
 
-There is no tests yet.
+Tests use [PHPUnit](https://phpunit.de).
+Simply run the following command in busfactor project directory:
+```
+vendor/bin/phpunit
+```
 
 Credits
 -------
-Maintainer : [dav-m85](http://github.com/dav-m85)
+Maintainer: [dav-m85](http://github.com/dav-m85)
 
-Contributors : you ?
+Contributors: you?
 
 License
 -------
-*busfactor* uses the MIT license. A copy can be found inside the project, or at http://opensource.org/licenses/mit-license.php
+*busfactor* is released under the MIT license.
+A copy can be found inside the project [here](LICENSE.txt), or at http://opensource.org/licenses/mit-license.php
 
 Related
 -------
-*  https://www.youtube.com/watch?v=0SARbwvhupQ
 *  https://github.com/lafourchette/gitmirror (Repository class was borrowed from this project)
