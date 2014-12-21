@@ -89,6 +89,5 @@ License
 
 Related
 -------
-https://github.com/lafourchette/gitmirror
-
-https://www.youtube.com/watch?v=0SARbwvhupQ
+*  https://www.youtube.com/watch?v=0SARbwvhupQ
+*  https://github.com/lafourchette/gitmirror (Repository class was borrowed from this project)
