@@ -94,7 +94,7 @@ Credits
 -------
 Maintainer: [dav-m85](http://github.com/dav-m85)
 
-Contributors: [Triiistan], you?
+Contributors: [Triiistan](http://github.com/Triiistan), you?
 
 License
 -------
